@@ -1,20 +1,26 @@
 import './style.sass'
 import gradeLogo from '../../assets/Chart.svg'
 import trash from '../../assets/trash.svg'
+import { Result } from '../../App'
 
-export function SubjectCard() {
+export function SubjectCard(props: Result) {
+  const cardType = `card-${props.disciplina}`
+  console.log(cardType);
   return (
     <div className='container'>
-      <div className="subject-card">
-        <div className="subject-card-header">
-          <h3 className="subject-card-title">Biologia</h3>
-          <p className="subject-card-date">20/12/2023</p>
-        </div>
-        <div className="subject-card-footer">
-          <img src={gradeLogo} alt="nota" />
-          <div className="subject-card-grade">Nota: 5</div>
+      <div className={cardType}>
+        <div className='subject-card' >
+          <div className="subject-card-header">
+            <h3 className="subject-card-title">{props.disciplina}</h3>
+            <p className="subject-card-date">{props.createdAt.toString()}</p>
+          </div>
+          <div className="subject-card-footer">
+            <img src={gradeLogo} alt="nota" />
+            <div className="subject-card-grade">Nota: {props.nota}</div>
+          </div>
         </div>
       </div>
+
       <a>
         <img src={trash} alt="" />
       </a>

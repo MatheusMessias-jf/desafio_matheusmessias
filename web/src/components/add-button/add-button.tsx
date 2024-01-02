@@ -4,14 +4,18 @@ import * as Tooltip from '@radix-ui/react-tooltip';
 
 export function AddButton() {
   return (
-    <Tooltip.Provider>
-      <Tooltip.Root>
+    <Tooltip.Provider >
+      <Tooltip.Root >
         <Tooltip.Trigger asChild>
-          <div className="add-button" id='myButton'>
+
+
+          <button className="add-button" id='myButton'>
             <img src={addLogo} alt="" />
-          </div>
-        </Tooltip.Trigger>
-        <Tooltip.Portal>
+          </button>
+
+
+        </Tooltip.Trigger >
+        <Tooltip.Portal >
           <Tooltip.Content className="TooltipContent" sideOffset={5}>
             Lançar nota
             <Tooltip.Arrow className="TooltipArrow" />
