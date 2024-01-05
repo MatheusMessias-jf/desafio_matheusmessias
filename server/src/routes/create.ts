@@ -15,7 +15,7 @@ export async function create(req:FastifyRequest, res:FastifyReply) {
     const disciplina = await prisma.result.findFirst({where: {disciplina: data.disciplina, bimestre: data.bimestre}})
     if (disciplina) {
       return res.status(400).send({error: "Não é possível adicionar duas vezes a mesma disciplina no bimestre."})
-    }
+    } 
     await prisma.result.create({data})
   } catch (e) {
     return res.status(400).send({error: e});

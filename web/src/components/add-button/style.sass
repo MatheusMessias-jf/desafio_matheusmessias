@@ -24,45 +24,213 @@
     img
       padding-left: 10px
 
+/* reset */
+button,
+fieldset,
+input
+  all: unset
+
+.DialogOverlay
+  background-color: rgba(0, 0, 0, 0.8)
+  position: fixed
+  inset: 0
+  animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1)
+
+.DialogContent
+  padding-top: 35px
+  background-color: #0F0F0F
+  box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px
+  position: fixed
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  width: 400px
+  padding: 25px
+  animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)
+
+  @media (min-width: 768px)
+    width: 678px
+
+.DialogTitle
+  margin: 0
+  font-weight: 500
+  font-size: 32px
+  padding-bottom: 24px
+
+.Button
+  background-color: rgba(233, 255, 26, 1)
+  color: #000
+  width: 135px
+  height: 50px
+  border-radius: 12px
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  font-size: 16px
+  font-weight: 600
+
+.IconButton
+  border-radius: 100%
+  height: 20px
+  width: 20px
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  color: var(--violet-11)
+  position: absolute
+  top: 35px
+  right: 30px
+
+@keyframes overlayShow
+  from
+    opacity: 0
+
+  to
+    opacity: 1
+
+@keyframes contentShow
+  from
+    opacity: 0
+    transform: translate(-50%, -48%) scale(0.96)
+
+  to
+    opacity: 1
+    transform: translate(-50%, -50%) scale(1)
+
+.items
+  display: flex
+  align-items: center
+  justify-content: center
+  flex-wrap: wrap
+  gap: 20px
+
+.items-title
+  font-size: 18px
+  font-weight: 500
+  margin-bottom: 25px
+
+.RadioGroupItem
+  text-align: center
+  width: 130px
+  height: 50px
+  font-weight: 500
+  font-size: 18px
+
+.Biologia
+  background-color: rgba(204, 64, 144, 0.2)
+  border-radius: 20px
+
+  &:disabled
+    background-color: rgba(77, 77, 77, 0.5)
+    color: rgba(236, 237, 238, 0.3)
+
+.Biologia[data-state="checked"]
+  background-color: rgba(204, 64, 144, 1)
+
+  &:disabled
+    background-color: rgba(77, 77, 77, 0.5)
+    color: rgba(236, 237, 238, 0.3)
+
+.Artes
+  background-color: rgba(5, 162, 194, 0.2)
+  border-radius: 20px
+
+  &:disabled
+    background-color: rgba(77, 77, 77, 0.5)
+    color: rgba(236, 237, 238, 0.3)
+
+.Artes[data-state="checked"]
+  background-color: rgba(5, 162, 194, 1)
+
+  &:disabled
+    background-color: rgba(77, 77, 77, 0.5)
+    color: rgba(236, 237, 238, 0.3)
+
+.Sociologia
+  background-color: rgba(155, 25, 194, 0.2)
+  border-radius: 20px
+
+  &:disabled
+    background-color: rgba(77, 77, 77, 0.5)
+    color: rgba(236, 237, 238, 0.3)
+
+.Sociologia[data-state="checked"]
+  background-color: rgba(155, 25, 194, 1)
+
+  &:disabled
+    background-color: rgba(77, 77, 77, 0.5)
+    color: rgba(236, 237, 238, 0.3)
+
+.Geografia
+  background-color: rgba(194, 103, 25, 0.2)
+  border-radius: 20px
+
+  &:disabled
+    background-color: rgba(77, 77, 77, 0.5)
+    color: rgba(236, 237, 238, 0.3)
+
+.Geografia[data-state="checked"]
+  background-color: rgba(194, 103, 25, 1)
+
+  &:disabled
+    background-color: rgba(77, 77, 77, 0.5)
+    color: rgba(236, 237, 238, 0.3)
+
+.nota-container
+  margin-top: 20px
+  display: flex
+  gap: 10px
+  flex-direction: column
+  font-size: 14px
+  font-weight: 400
+
+  input
+    border: 1px solid rgba(66, 66, 66, 1)
+    width: 100px
+    height: 50px
+    border-radius: 12px
+    color: rgba(109, 109, 109, 1)
+    text-align: center
+
 .TooltipContent
   border-radius: 4px
   padding: 10px 15px
   font-size: 15px
   line-height: 1
-  color: #000000
-  background-color: rgba(233, 255, 26, 1)
+  color: var(--violet-11)
+  background-color: rgba(66, 66, 66, 1)
   box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px
   user-select: none
   animation-duration: 400ms
   animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1)
   will-change: transform, opacity
 
+  &[data-state='delayed-open'][data-side='top']
+    animation-name: slideDownAndFade
+
+  &[data-state='delayed-open'][data-side='right']
+    animation-name: slideLeftAndFade
+
+  &[data-state='delayed-open'][data-side='bottom']
+    animation-name: slideUpAndFade
+
+  &[data-state='delayed-open'][data-side='left']
+    animation-name: slideRightAndFade
+
   @media (min-width: 768px)
     display: none
 
-.TooltipContent[data-state='delayed-open'][data-side='top']
-  animation-name: slideDownAndFade
-
-.TooltipContent[data-state='delayed-open'][data-side='right']
-  animation-name: slideLeftAndFade
-
-.TooltipContent[data-state='delayed-open'][data-side='bottom']
-  animation-name: slideUpAndFade
-
-.TooltipContent[data-state='delayed-open'][data-side='left']
-  animation-name: slideRightAndFade
-
 .TooltipArrow
-  fill: rgba(233, 255, 26, 1)
+  fill: rgba(66, 66, 66, 1)
 
-@keyframes slideUpAndFade
-  from
-    opacity: 0
-    transform: translateY(2px)
+  @keyframes slideUpAndFade
+    from
+      opacity: 0
+      transform: translateY(2px)
 
-  to
-    opacity: 1
-    transform: translateY(0)
+    to
+      opacity: 1
+      transform: translateY(0)
 
 @keyframes slideRightAndFade
   from

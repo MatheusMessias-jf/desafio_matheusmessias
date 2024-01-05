@@ -1,6 +1,27 @@
+.redGrade
+  color: red
+
+.yellowGrade
+  color: yellow
+
+.greenGrade
+  color: rgba(5, 255, 0, 1)
+
+.erro
+  margin-top: 10px
+  color: red
+
+button
+  cursor: pointer
+
 .container
   display: flex
   gap: 2px
+
+  button
+    cursor: pointer
+    width: 24px
+    height: 26px
 
 .card-Biologia
   background-color: #CC4090
@@ -16,18 +37,17 @@
 
 .card-Geografia
   background-color: #C26719
-
   border-radius: 20px
 
 .subject-card
   width: 158px
   height: 156px
-  //background-color: #CC4090
-
+  justify-content: space-around
   display: flex
   flex-direction: column
   gap: 40px
   padding-top: 16px
+  padding-bottom: 16px
 
   &-header
     padding: 0 16px
@@ -41,3 +61,70 @@
     display: flex
     background-color: rgba(15, 15, 15, 0.7)
     gap: 7px
+
+.TooltipContent
+  border-radius: 4px
+  padding: 10px 15px
+  font-size: 15px
+  line-height: 1
+  color: var(--violet-11)
+  background-color: rgba(66, 66, 66, 1)
+  box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px
+  user-select: none
+  animation-duration: 400ms
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1)
+  will-change: transform, opacity
+
+  &[data-state='delayed-open'][data-side='top']
+    animation-name: slideDownAndFade
+
+  &[data-state='delayed-open'][data-side='right']
+    animation-name: slideLeftAndFade
+
+  &[data-state='delayed-open'][data-side='bottom']
+    animation-name: slideUpAndFade
+
+  &[data-state='delayed-open'][data-side='left']
+    animation-name: slideRightAndFade
+
+  @media (min-width: 768px)
+    display: none
+
+.TooltipArrow
+  fill: rgba(66, 66, 66, 1)
+
+  @keyframes slideUpAndFade
+    from
+      opacity: 0
+      transform: translateY(2px)
+
+    to
+      opacity: 1
+      transform: translateY(0)
+
+@keyframes slideRightAndFade
+  from
+    opacity: 0
+    transform: translateX(-2px)
+
+  to
+    opacity: 1
+    transform: translateX(0)
+
+@keyframes slideDownAndFade
+  from
+    opacity: 0
+    transform: translateY(-2px)
+
+  to
+    opacity: 1
+    transform: translateY(0)
+
+@keyframes slideLeftAndFade
+  from
+    opacity: 0
+    transform: translateX(2px)
+
+  to
+    opacity: 1
+    transform: translateX(0)

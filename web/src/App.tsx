@@ -22,14 +22,17 @@ interface OrganizedDataType {
 
 function App() {
   const [results, setResults] = useState<OrganizedDataType>();
+  const [newDate, setNewDate] = useState(new Date())
+
+  function reload() {
+    setNewDate(new Date())
+  }
 
   const list = useCallback(
     async () => {
       await api.get('/list').then(
-
         (organizedData) => {
           const typedData: OrganizedDataType = organizedData.data.organizedData
-          console.log(typedData);
           setResults(typedData)
         }
       )
@@ -37,17 +40,17 @@ function App() {
 
   useEffect(() => {
     list()
-  }, [list])
+  }, [list, newDate])
 
   return (
     <div className='app-container'>
-      <Bimestre number={1} results={results?.PRIMEIRO} />
+      <Bimestre reload={reload} number={1} bimDescription='PRIMEIRO' results={results?.PRIMEIRO} />
 
-      <Bimestre number={2} results={results?.SEGUNDO} />
+      <Bimestre reload={reload} number={2} bimDescription='SEGUNDO' results={results?.SEGUNDO} />
 
-      <Bimestre number={3} results={results?.TERCEIRO} />
+      <Bimestre reload={reload} number={3} bimDescription='TERCEIRO' results={results?.TERCEIRO} />
 
-      <Bimestre number={4} results={results?.QUARTO} />
+      <Bimestre reload={reload} number={4} bimDescription='QUARTO' results={results?.QUARTO} />
     </div>
   )
 }

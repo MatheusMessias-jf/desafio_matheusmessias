@@ -1,4 +1,3 @@
-
 import { FastifyReply, FastifyRequest } from "fastify";
 import { prisma } from "../lib/prisma";
 import { Result } from "@prisma/client";

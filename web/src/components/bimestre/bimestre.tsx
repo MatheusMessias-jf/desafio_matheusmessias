@@ -6,20 +6,24 @@ import './style.sass'
 interface BimestreProps {
   number: number
   results: Result[] | undefined
+  bimDescription: string
+  reload: () => void
 }
 
-export function Bimestre({ number, results }: BimestreProps) {
+export function Bimestre({ reload, number, results, bimDescription }: BimestreProps) {
   return (
     <div className="bimestre-container">
       <div className="bimestre-header">
         <h2 className="bimestre-header-title"> Bimestre {number}</h2>
-        <AddButton />
+
+        <AddButton reload={reload} bimDescription={bimDescription} />
+
       </div>
 
       <div className="cards-container">
         {results && results!.map((result: Result) => {
           return (
-            <SubjectCard {...result} key={result.disciplina} />
+            <SubjectCard reload={reload} {...result} key={result.disciplina} />
           )
         })}
       </div>
